@@ -12,6 +12,10 @@ Router.map(function() {
   this.route('admin', function() {
     this.route('invitaction');
   });
+
+  this.route('libraries', function() {
+    this.route('new');
+  });
 });
 
 export default Router;
