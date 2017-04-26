@@ -27,9 +27,18 @@ export default Ember.Controller.extend({
     actions: {
         saveInvitation: function() {
             // 模拟保存操作
-            this.set('responseMessage', `Thank you! We've just saved your email address: ${this.get('emailAddress')}`);
-            //  情况输入框内容
-            this.set('emailAddress', '');
+            const email = this.get('emailAddress');
+            //  创建一个模型对象
+            const newInvitaction = this.store.createRecord('invitation', { email: email });
+            newInvitaction.save().then(function(msg) {
+              console.log('保存成功。');
+            }, function(reason) {
+              console.log('保存失败！');
+            });
+          this.set('responseMessage', `保存成功 : ${this.get('emailAddress')}！`);
+          //  情况输入框内容
+          this.set('emailAddress', '');
+
         }
     }
 });
