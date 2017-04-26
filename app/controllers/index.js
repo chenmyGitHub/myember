@@ -30,15 +30,23 @@ export default Ember.Controller.extend({
             const email = this.get('emailAddress');
             //  创建一个模型对象
             const newInvitaction = this.store.createRecord('invitation', { email: email });
+            const _this = this;
+            //保存模型对象到store中
             newInvitaction.save().then(function(msg) {
-              console.log('保存成功。');
+              _this.set('responseMessage', `保存成功: ${_this.get('emailAddress')}!`);
+              //  情况输入框内容
+              _this.set('emailAddress', '');
             }, function(reason) {
-              console.log('保存失败！');
+              _this.set('responseMessage', `Saved: ${_this.get('emailAddress')} failed！ -- reason ${reason}`);
+              //  情况输入框内容
+              _this.set('emailAddress', '');
             });
-          this.set('responseMessage', `保存成功 : ${this.get('emailAddress')}！`);
-          //  情况输入框内容
-          this.set('emailAddress', '');
 
         }
     }
+
+
+
+
+
 });
