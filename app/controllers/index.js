@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
             const _this = this;
             //保存模型对象到store中
             newInvitaction.save().then(function(msg) {
-              _this.set('responseMessage', `保存成功: ${_this.get('emailAddress')}!`);
+              _this.set('responseMessage', `保存成功: ${_this.get('emailAddress')}! --msg ${msg}`);
               //  情况输入框内容
               _this.set('emailAddress', '');
             }, function(reason) {
